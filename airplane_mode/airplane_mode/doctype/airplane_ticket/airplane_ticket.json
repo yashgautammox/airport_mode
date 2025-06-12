@@ -7,12 +7,10 @@
  "engine": "InnoDB",
  "field_order": [
   "passenger",
-  "source_airport",
-  "source_airport_code",
+  "source_code",
   "column_break_mqsf",
   "flight",
-  "destination_airport",
-  "destination_airport_code",
+  "destination_code",
   "section_break_ui1w",
   "departure_date",
   "departure_time",
@@ -38,47 +36,12 @@
    "search_index": 1
   },
   {
-   "fieldname": "source_airport",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Source Airport",
-   "options": "Airport",
-   "reqd": 1
-  },
-  {
-   "fieldname": "destination_airport",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Destination Airport",
-   "options": "Airport",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "source_airport.code",
-   "fetch_if_empty": 1,
-   "fieldname": "source_airport_code",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Source Airport Code",
-   "read_only": 1,
-   "reqd": 1
-  },
-  {
-   "fetch_from": "flight.destination_airport_code",
-   "fetch_if_empty": 1,
-   "fieldname": "destination_airport_code",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Destination Airport Code",
-   "options": "Airplane Flight",
-   "read_only": 1
-  },
-  {
    "fieldname": "flight",
    "fieldtype": "Link",
    "label": "Flight",
    "options": "Airplane Flight",
-   "reqd": 1
+   "reqd": 1,
+   "search_index": 1
   },
   {
    "fetch_from": "flight.date_of_departure",
@@ -174,13 +137,28 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Seat"
+  },
+  {
+   "fetch_from": "flight.source_code",
+   "fetch_if_empty": 1,
+   "fieldname": "source_code",
+   "fieldtype": "Data",
+   "label": "Source Code"
+  },
+  {
+   "fetch_from": "flight.destination_code",
+   "fetch_if_empty": 1,
+   "fieldname": "destination_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Destination Code"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-11 23:52:52.166846",
+ "modified": "2025-06-12 12:44:37.236022",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Ticket",

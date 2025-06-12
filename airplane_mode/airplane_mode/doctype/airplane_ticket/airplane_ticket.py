@@ -45,4 +45,13 @@ class AirplaneTicket(Document):
 		for item in self.add_ons:
 			total+= (item.amount * item.quantity)
 
-		self.total_price=total + self.flight_price
+		try:
+			flight_price = float(self.flight_price)
+		except (ValueError,TypeError):
+			flight_price = 0.0
+		# try:
+    	# 	flight_price = float(self.flight_price)
+		# except (ValueError, TypeError):
+    	# 	flight_price = 0.0
+
+		self.total_price=total + flight_price

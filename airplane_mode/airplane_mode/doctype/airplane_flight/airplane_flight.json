@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "format:{airplane}-{MM}-{YY}-{#####}",
  "creation": "2025-06-11 19:15:03.086497",
@@ -14,12 +15,16 @@
   "duration",
   "status",
   "amended_from",
-  "section_break_pcvw",
+  "section_break_copy",
   "source_airport",
+  "source_code",
+  "column_break_syvk",
   "destination_airport",
-  "column_break_lxda",
-  "source_airport_code",
-  "destination_airport_code"
+  "destination_code",
+  "section_break_nawk",
+  "route",
+  "column_break_kunf",
+  "ispublished"
  ],
  "fields": [
   {
@@ -73,7 +78,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_pcvw",
+   "fieldname": "section_break_copy",
    "fieldtype": "Section Break"
   },
   {
@@ -83,36 +88,56 @@
    "options": "Airport"
   },
   {
+   "fetch_from": "source_airport.code",
+   "fieldname": "source_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Source Code ",
+   "read_only": 1
+  },
+  {
    "fieldname": "destination_airport",
    "fieldtype": "Link",
    "label": "Destination Airport",
    "options": "Airport"
   },
   {
-   "fetch_from": "source_airport.code",
-   "fieldname": "source_airport_code",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Source Airport Code",
-   "options": "Airport",
-   "read_only": 1
-  },
-  {
    "fetch_from": "destination_airport.code",
-   "fieldname": "destination_airport_code",
-   "fieldtype": "Link",
+   "fetch_if_empty": 1,
+   "fieldname": "destination_code",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Destination Airport Code",
-   "options": "Airport",
+   "label": "Destination code",
    "read_only": 1
   },
   {
-   "fieldname": "column_break_lxda",
+   "fieldname": "column_break_syvk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_nawk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "default": "0",
+   "fieldname": "ispublished",
+   "fieldtype": "Check",
+   "label": "IsPublished"
+  },
+  {
+   "fieldname": "column_break_kunf",
    "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "ispublished",
  "is_submittable": 1,
  "links": [
   {
@@ -120,7 +145,7 @@
    "link_fieldname": "Flight"
   }
  ],
- "modified": "2025-06-11 19:53:53.635115",
+ "modified": "2025-06-12 14:24:58.563238",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Airplane Flight",
@@ -141,8 +166,10 @@
    "write": 1
   }
  ],
+ "route": "flights",
  "row_format": "Dynamic",
  "sort_field": "creation",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "title_field": "airplane"
 }

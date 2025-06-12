@@ -1,0 +1,81 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<style>
+  .flight-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .flight-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #1e90ff;
+    border-bottom: 2px solid #1e90ff;
+    padding-bottom: 8px;
+  }
+
+  .flight-container h2 {
+    margin-top: 20px;
+    color: #333;
+    font-size: 1.4rem;
+  }
+
+  .flight-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .flight-container li {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #444;
+  }
+
+  .btn-blue {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: #1e90ff;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-blue:hover {
+    background-color: #1c86ee;
+  }
+
+  .book-button {
+    margin-top: 24px;
+    text-align: center;
+  }
+</style>
+
+<div class="flight-container">
+  <div>
+    <h1>{{ title | e }}</h1>
+  </div>
+
+  <div>
+    <h2>Flight Details</h2>
+    <ul>
+      {% set airplane_doc = frappe.get_doc("Airplane", doc.airplane) %}
+      <li><strong>Airline:</strong> {{ airplane_doc.airline }}</li>
+      <li><strong>Duration:</strong> {{ frappe.utils.format_duration(doc.duration) | e }}</li>
+      <li><strong>Time:</strong> {{ doc.time_of_departure | e }}</li>
+      <li><strong>Date:</strong> {{ frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY") | e }}</li>
+    </ul>
+  </div>
+
+  <div class="book-button">
+    <a href="/book-flight-web-form/new?flight={{doc.name}}&flight_price={{10000 | int}}" class="btn-blue">Book Now</a>
+  </div>
+</div>
+{% endblock %}

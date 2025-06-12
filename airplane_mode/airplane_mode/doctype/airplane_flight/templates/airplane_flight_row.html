@@ -1,0 +1,77 @@
+<div class="flight-card">
+	{% set airplane_doc = frappe.get_doc("Airplane", doc.airplane) %}
+    <div class="flight-header">
+		{{ airplane_doc.airline | e }}
+        
+    </div>
+    <div class="flight-route">
+        {{ doc.source_code | e }}
+        <span class="flight-arrow">→</span>
+        {{ doc.destination_code | e }}
+    </div>
+    <div class="flight-duration">
+      {{ frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY") | e }}  | {{ doc.time_of_departure | e }} | {{ frappe.utils.format_duration(doc.duration)  | e }}
+    </div>
+    <!-- <div class="flight-date-time">
+         Date: {{ frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY") | e }}  | Time: {{ doc.time_of_departure | e }}
+    </div>-->
+	<div class="view-flight">
+         <a href="/{{ doc.route | e }}"> View Flight </a>
+    </div> 
+</div>
+<!-- this is a sample default list template -->
+<!-- Below is the less css for the above template-->
+
+<style>
+    .flight-card {
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        padding: 16px;
+        margin: 10px 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        background-color: #f9f9f9;
+        transition: transform 0.2s;
+    }
+
+    .flight-card:hover {
+        transform: scale(1.01);
+    }
+
+    .flight-header {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .flight-route {
+        font-size: 1rem;
+        margin: 6px 0;
+        color: #555;
+    }
+
+    .flight-arrow {
+        margin: 0 8px;
+        font-weight: bold;
+        color: #888;
+    }
+
+    .flight-duration,
+    .flight-date-time {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 4px;
+    }
+
+	.view-flight a {
+    font-size: 1.1rem;
+    color: #1e90ff;
+    margin-top: 4px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.view-flight a:hover {
+    text-decoration: underline;
+}
+</style>
