@@ -11,11 +11,12 @@ class AirplaneTicket(Document):
 
 	def validate(self):
 		self.remove_duplicate_add_ons()
+		self.check_capacity()
 
 
 	def before_save(self):
 		self.calculate_total_price()
-		self.seat=create_random()
+	
 
 
 	def before_submit(self):
@@ -55,3 +56,15 @@ class AirplaneTicket(Document):
     	# 	flight_price = 0.0
 
 		self.total_price=total + flight_price
+	
+	def check_capacity(self):
+
+		if self.flight:
+			flight = frappe.get_doc("Airplane Flight", self.flight)
+			airplane = frappe.get_doc("Airplane", flight.airplane)
+
+			capacity = airplane.capacity
+			ticket_count = frappe.db.count("Airplane Ticket", {"flight": self.flight})
+
+			if ticket_count >= capacity:
+				frappe.throw(f"Cannot book ticket. Flight is full ({capacity} seats already booked).")
