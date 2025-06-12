@@ -9,6 +9,8 @@
   "section_break_cvt7",
   "first_name",
   "last",
+  "column_break_qhzc",
+  "full_name",
   "dob"
  ],
  "fields": [
@@ -34,6 +36,16 @@
    "in_list_view": 1,
    "label": "DOB",
    "reqd": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qhzc",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
@@ -44,7 +56,7 @@
    "link_fieldname": "Passenger"
   }
  ],
- "modified": "2025-06-06 14:33:52.918244",
+ "modified": "2025-06-11 16:24:02.886032",
  "modified_by": "Administrator",
  "module": "Airplane Mode",
  "name": "Flight passenger",
@@ -68,5 +80,5 @@
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [],
- "title_field": "first_name"
+ "title_field": "full_name"
 }
